@@ -11,24 +11,27 @@
   {{ 'application.js' | asset_url | script_tag }}
 </head>
 <body>
-
-  {% for link in linklists.main-menu.links %}
-    {% assign child_list_handle = link.title | handleize %}
-    {% if linklists[child_list_handle].links != blank %}
-      <a href="{{ link.url }}">{{ link.title }}</a>
-      [{% for childlink in linklists[child_list_handle].links %}
-        <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-      {% endfor %}]
-    {% else %}
-      {% if link.title == "Home" %}
-        <a href="{{ link.url }}">{{ shop.name }}</a>
-      {% else %}
+  <nav id="nav" class="sans-serif">
+    <div>
+    {% for link in linklists.main-menu.links %}
+      {% assign child_list_handle = link.title | handleize %}
+      {% if linklists[child_list_handle].links != blank %}
         <a href="{{ link.url }}">{{ link.title }}</a>
+        [{% for childlink in linklists[child_list_handle].links %}
+          <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+        {% endfor %}]
+      {% else %}
+        {% if link.title == "Home" %}
+          <a href="{{ link.url }}">{{ shop.name }}</a>
+        {% else %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endif %}
       {% endif %}
-    {% endif %}
-  {% endfor %}
-
-  <a href="/cart">cart</a>
+      <span> | </span>
+    {% endfor %}
+    <a href="/cart">Cart</a>
+    </div>
+  </nav>
 
   {% if shop.customer_accounts_enabled %}
     {% if customer %}

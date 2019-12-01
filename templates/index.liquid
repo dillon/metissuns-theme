@@ -1,6 +1,6 @@
-{% paginate collections.all.products by 15 %}
-  <main id="home">
-    {% for product in collections.all.products limit:15 %}
+{% paginate collections.all.products by 16 %}
+  <div id="home">
+    {% for product in collections.all.products limit:16 %}
       <div class="product">
         <a class="no-hover" href="{{ product.url | within: collection }}">
           <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
@@ -9,13 +9,18 @@
           <a class="sans-serif" href="{{ product.url | within: collection }}"><strong>{{ product.title }}</strong></a>
         </div>
         <div>
-          {{ product.price | money }}
-          {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
+          {% if product.available %}{{ product.price | money }}
+          {% else %}sold out
+          {% endif %}
         </div>
       </div>
     {% endfor %}
-    {% if paginate.pages > 1 %}
-      {{ paginate | default_pagination }}
-    {% endif %}
-  </main id="home">
+  </div>
+  <nav id="pagination" class="sans-serif">
+    <div>
+      {% if paginate.pages > 1 %}
+        {{ paginate | default_pagination }}
+      {% endif %}
+    </div>
+  </nav>
 {% endpaginate %}
