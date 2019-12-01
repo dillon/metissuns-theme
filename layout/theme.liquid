@@ -20,7 +20,11 @@
         <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
       {% endfor %}]
     {% else %}
-      <a href="{{ link.url }}">{{ link.title }}</a>
+      {% if link.title == "Home" %}
+        <a href="{{ link.url }}">{{ shop.name }}</a>
+      {% else %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endif %}
     {% endif %}
   {% endfor %}
 
