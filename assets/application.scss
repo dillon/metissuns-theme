@@ -1,7 +1,20 @@
+// sitewide variables
+$backgroundColor: #f1f1f1;
+$listItemWidth: 350px;
 // put your styles here
+
 body {
   font-size: 1.25em;
   font-family: serif;
+  padding: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 20px;
+  background: $backgroundColor;
+}
+
+main {
+  margin: 5% auto;
 }
 
 h1,
@@ -12,4 +25,65 @@ h5,
 h6,
 .sans-serif {
   font-family: sans-serif;
+}
+
+img {
+  display: inline-block;
+}
+
+h2 {
+  /*margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  */
+  font-size: 12pt;
+  font-weight: normal;
+
+}
+
+h3 {
+  font-family: sans-serif;
+  margin-bottom: 0.2em;
+}
+
+a:visited {
+  color: blue;
+}
+
+/*a:hover {
+	color: red;	
+}*/
+
+a:hover {
+  background-color: blue;
+  color: white;
+}
+
+a.no-hover:hover {
+  background-color: transparent;
+}
+
+
+
+
+
+// home
+#home {
+  display: grid;
+  max-width: 900px;
+  grid-template-columns: repeat(auto-fill, minmax($listItemWidth, 1fr));
+  align-items: flex-start;
+  justify-items: center;
+
+
+  .product {
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: $listItemWidth;
+
+    img {
+      max-width: $listItemWidth;
+    }
+  }
 }
