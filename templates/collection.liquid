@@ -1,6 +1,6 @@
-{% paginate collection.products by 2 %}
-  <h1>{{ collection.title }}</h1>
+{% comment %} <div id="collection">
   {% for product in collection.products %}
+    {% unless product.available %}
     <div>
       <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
       {{ product.price | money }}
@@ -8,10 +8,46 @@
         <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
       </a>
     </div>
-  {% else %}
-    <p>no matches</p>
+    {% endunless %}
   {% endfor %}
-  {% if paginate.pages > 1 %}
-    {{ paginate | default_pagination }}
-  {% endif %}
-{% endpaginate %}
+</div> {% endcomment %}
+
+<div id="collection">
+  {% for product in collection.products %}
+    {% if collection.title == "Archive" %}
+      {% unless product.available %}
+        <div class="product">
+          <a class="no-hover" href="{{ product.url | within: collection }}">
+            <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          </a>
+          <div>
+            <a class="sans-serif" href="{{ product.url | within: collection }}">
+              <strong>{{ product.title }}</strong>
+            </a>
+          </div>
+          <div>
+              {% if product.available %}{{ product.price | money }}
+              {% else %}sold out
+              {% endif %}
+          </div>
+        </div>
+      {% endunless %}
+    {% else %}
+      <div class="product">
+        <a class="no-hover" href="{{ product.url | within: collection }}">
+          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+        </a>
+        <div>
+          <a class="sans-serif" href="{{ product.url | within: collection }}">
+            <strong>{{ product.title }}</strong>
+          </a>
+        </div>
+        <div>
+            {% if product.available %}{{ product.price | money }}
+            {% else %}sold out
+            {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
