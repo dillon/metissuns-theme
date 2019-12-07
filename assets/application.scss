@@ -272,6 +272,9 @@ nav#pagination {
 
 // product modal
 #product-modal {
+  display: none;
+  visibility: hidden;
+
   @media only screen and (min-width: $tabletBreakpoint) {
     &.open {
       min-height: 100%;
