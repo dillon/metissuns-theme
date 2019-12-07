@@ -11,7 +11,7 @@
         </a>
       </div>
       <div>
-        {{ product.price | money }}
+        {{ product.price | money_without_trailing_zeros }}
       </div>
     </div>
   {% endfor %}

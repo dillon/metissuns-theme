@@ -6,7 +6,7 @@
       {% assign grid_item_width = 'large--one-fifth medium--one-half' %}
       <div>
         <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-        {{ product.price | money }}
+        {{ product.price | money_without_trailing_zeros }}
         {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
         <a href="{{ product.url | within: collection }}">
           <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">

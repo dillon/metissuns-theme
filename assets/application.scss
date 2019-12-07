@@ -37,7 +37,8 @@ body {
 body:not(.user-is-tabbing) {
 
   // nicer styling for non-accessibility users
-  select {
+  select,
+  button {
     outline: none;
   }
 }
@@ -191,6 +192,37 @@ nav#pagination {
 
 // product
 #product-page {
+  .hide {
+    display: none;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+  }
+
+  button {
+    font-family: serif;
+    font-size: inherit;
+    background: inherit;
+    background-color: inherit;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+  }
+
+  #AddToCart {
+    transition: transform 0.1s cubic-bezier(.3, 0, .45, 1);
+  }
+
+  #AddToCart:hover {
+    transition: transform 0.1s cubic-bezier(.3, 0, .45, 1);
+    transform: scale(1.05);
+  }
+
+  #product-title {
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
   @media only screen and (min-width: $tabletBreakpoint) {
     #product-details {
       position: fixed;

@@ -31,13 +31,33 @@
     </div>
   </div>
   <div id="product-details">
-    <h1>{{ product.title }}</h1>
+    <div id="product-title" class="sans-serif">
+      {{ product.title }}
+    </div>
+    {% if product.description %}
+      <button type="submit" onclick="showDescriptionModal()" id="info-button">Info</button>
+      <button class="hide" type="submit" onclick="hideDescriptionModal()" id="description-modal">{{ product.description }}</button>
+      <script>
+        function showDescriptionModal() {
+          const info = document.getElementById("info-button")
+          info.className = "hide"
+          const modal = document.getElementById("description-modal")
+          modal.className = ""
+        }
+        function hideDescriptionModal() {
+          const info = document.getElementById("info-button")
+          info.className = ""
+          const modal = document.getElementById("description-modal")
+          modal.className = "hide"
+        }
+      </script>
+    {% endif %}
     <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
       <select onchange="selectChangeHandler()" name="id" id="productSelect">
         <option value="" disabled selected>Size</option>
         {% for variant in product.variants %}
           {% if variant.available %}
-            <option data-price="{{ variant.price | money }}" value="{{ variant.id }}">
+            <option data-price="{{ variant.price | money_without_trailing_zeros }}" value="{{ variant.id }}">
               {{ variant.title }}
             </option>
           {% else %}
@@ -47,17 +67,16 @@
           {% endif %}
         {% endfor %}
       </select>
-      <span id="ProductPrice">
+      <div id="ProductPrice">
         {% if product.selected_or_first_available_variant.available %}
-        {{ product.selected_or_first_available_variant.price | money }}
-        {% else %}sold out
+          {{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}
+        {% else %}
+          sold out
         {% endif %}
-      </span>
-      <label for="Quantity">quantity</label>
-      <input type="number" id="Quantity" name="quantity" value="1" min="1">
-      <button type="submit" name="add" id="AddToCart">Add to cart</button>
+      </div>
+      <input style="display:none;" type="number" id="Quantity" name="quantity" value="1" min="1">
+      <button type="submit" name="add" id="AddToCart">Cart +</button>
     </form>
-    <div>{{ product.description }}</div>
   </div>
 </div>
 <script>
