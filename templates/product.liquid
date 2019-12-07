@@ -51,22 +51,7 @@
       {{ product.title }}
     </div>
     {% if product.description %}
-      <button class="unstyled" type="submit" onclick="showDescriptionModal()" id="info-button">Info</button>
-      <button class="hide unstyled" type="submit" onclick="hideDescriptionModal()" id="description-modal">{{ product.description }}</button>
-      <script>
-        function showDescriptionModal() {
-          const info = document.getElementById("info-button")
-          info.classList.add("hide")
-          const modal = document.getElementById("description-modal")
-          modal.classList.remove("hide")
-        }
-        function hideDescriptionModal() {
-          const info = document.getElementById("info-button")
-          info.classList.remove("hide")
-          const modal = document.getElementById("description-modal")
-          modal.classList.add("hide")
-        }
-      </script>
+      <button class="unstyled" type="submit" id="description-modal">{{ product.description }}</button>
     {% endif %}
     <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
       <select onchange="selectChangeHandler()" name="id" id="productSelect">
