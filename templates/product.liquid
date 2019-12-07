@@ -20,7 +20,7 @@
   }
 </script>
 <div id="product-page">
-  <div class="slider">
+    <div class="slider">
       {% for image in product.images %}
         <div>
           <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}">
@@ -28,7 +28,14 @@
       {% endfor %}
   </div>
   <script>
-    tns()
+    tns({
+      container: ".slider",
+      controls: false,
+      navPosition: "bottom",
+      center: true,
+      mouseDrag: true,
+      nav: true
+      })
   </script>
   <div onclick="openModal()" id="product-images">
     <div id="images">
@@ -44,20 +51,20 @@
       {{ product.title }}
     </div>
     {% if product.description %}
-      <button type="submit" onclick="showDescriptionModal()" id="info-button">Info</button>
-      <button class="hide" type="submit" onclick="hideDescriptionModal()" id="description-modal">{{ product.description }}</button>
+      <button class="unstyled" type="submit" onclick="showDescriptionModal()" id="info-button">Info</button>
+      <button class="hide unstyled" type="submit" onclick="hideDescriptionModal()" id="description-modal">{{ product.description }}</button>
       <script>
         function showDescriptionModal() {
           const info = document.getElementById("info-button")
-          info.className = "hide"
+          info.classList.add("hide")
           const modal = document.getElementById("description-modal")
-          modal.className = ""
+          modal.classList.remove("hide")
         }
         function hideDescriptionModal() {
           const info = document.getElementById("info-button")
-          info.className = ""
+          info.classList.remove("hide")
           const modal = document.getElementById("description-modal")
-          modal.className = "hide"
+          modal.classList.add("hide")
         }
       </script>
     {% endif %}
@@ -71,20 +78,25 @@
             </option>
           {% else %}
             <option disabled="disabled">
-              {{ variant.title }} - sold out
+              {{ variant.title }} - Sold Out
             </option>
           {% endif %}
         {% endfor %}
       </select>
-      <div id="ProductPrice">
+        {% comment %} <span id="caret-container">
+          <svg id="down-caret" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>        
+        </span> {% endcomment %}
+        <div id="ProductPrice">
         {% if product.selected_or_first_available_variant.available %}
           {{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}
         {% else %}
-          sold out
+          Sold Out
         {% endif %}
       </div>
       <input style="display:none;" type="number" id="Quantity" name="quantity" value="1" min="1">
-      <button type="submit" name="add" id="AddToCart">Cart +</button>
+      <button class="unstyled" type="submit" name="add" id="AddToCart">
+      Cart +
+      </button>
     </form>
   </div>
 </div>
