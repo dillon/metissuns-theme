@@ -34,6 +34,14 @@ body {
   background: $backgroundColor;
 }
 
+body:not(.user-is-tabbing) {
+
+  // nicer styling for non-accessibility users
+  select {
+    outline: none;
+  }
+}
+
 @media only screen and (max-width: $smallerTextBreakpoint) {
   body {
     font-size: 12px
@@ -91,6 +99,18 @@ a.no-hover:hover {
   background-color: transparent;
 }
 
+option[value=""][disabled] {
+  display: none;
+}
+
+select {
+  font-family: serif;
+  font-size: inherit;
+  background: inherit;
+  background-color: inherit;
+  border: none;
+  border-radius: 0;
+}
 
 
 // nav
@@ -182,19 +202,22 @@ nav#pagination {
     }
 
     #product-images {
-      cursor: zoom-in;
+      img {
+        cursor: zoom-in;
+      }
+
       width: 66%;
       display: flex;
       flex-direction: column;
       align-items: center;
 
       .img-wrapper {
-        height: 70vh;
-        margin-bottom: 40px;
+        height: 75vh;
+        // margin-bottom: 40px;
       }
 
       img {
-        max-height: 70vh;
+        max-height: 75vh;
         height: 100%;
         max-width: 100%;
         margin: 0 auto;
@@ -203,6 +226,7 @@ nav#pagination {
       }
     }
   }
+
 
   @media only screen and (max-width: $tabletBreakpoint) {
     #featured-image {

@@ -1,3 +1,6 @@
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 <div onclick="closeModal(this)" id="product-modal">
@@ -19,18 +22,23 @@
 </script>
 <div id="product-page">
   <div onclick="openModal()" id="product-images">
-    <div id="featured-image" class="img-wrapper">
-      <img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
+    <div id="images">
+      {% for image in product.images %}
+        <div class="img-wrapper">
+          <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}">
+        </div>
+      {% endfor %}
     </div>
   </div>
   <div id="product-details">
     <h1>{{ product.title }}</h1>
     <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-      <select name="id" id="productSelect">
+      <select onchange="selectChangeHandler()" name="id" id="productSelect">
+        <option value="" disabled selected>Size</option>
         {% for variant in product.variants %}
           {% if variant.available %}
-            <option value="{{ variant.id }}">
-              {{ variant.title }} - {{ variant.price | money_with_currency }}
+            <option data-price="{{ variant.price | money }}" value="{{ variant.id }}">
+              {{ variant.title }}
             </option>
           {% else %}
             <option disabled="disabled">
@@ -39,7 +47,12 @@
           {% endif %}
         {% endfor %}
       </select>
-      {{ current_variant.price | money }}
+      <span id="ProductPrice">
+        {% if product.selected_or_first_available_variant.available %}
+        {{ product.selected_or_first_available_variant.price | money }}
+        {% else %}sold out
+        {% endif %}
+      </span>
       <label for="Quantity">quantity</label>
       <input type="number" id="Quantity" name="quantity" value="1" min="1">
       <button type="submit" name="add" id="AddToCart">Add to cart</button>
@@ -47,3 +60,9 @@
     <div>{{ product.description }}</div>
   </div>
 </div>
+<script>
+  function selectChangeHandler(event) {
+    const price = document.getElementById('productSelect').selectedOptions[0].dataset.price
+    document.getElementById('ProductPrice').innerHTML = price;
+  }
+</script>

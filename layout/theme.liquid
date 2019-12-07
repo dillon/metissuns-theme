@@ -46,5 +46,14 @@
   <main role="main">
     {{ content_for_layout }}
   </main>
+  <script>
+    // ACCESSIBILITY
+    function handleFirstTab(e) {
+      if (e.keyCode === 9) {
+              document.body.classList.add('user-is-tabbing');
+      }
+    }
+  window.addEventListener('keydown', handleFirstTab);
+  </script>
 </body>
 </html>
