@@ -51,7 +51,7 @@
       {{ product.title }}
     </div>
     {% if product.description %}
-      <button class="unstyled" type="submit" id="description-modal">{{ product.description }}</button>
+      <div type="submit" id="description-modal">{{ product.description }}</div>
     {% endif %}
     <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
       <select onchange="selectChangeHandler()" name="id" id="productSelect">

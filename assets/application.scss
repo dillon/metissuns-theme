@@ -85,6 +85,13 @@ main {
   margin-right: 40px;
 }
 
+@media only screen and (max-width: $mobileBreakpoint) {
+  main {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -212,6 +219,11 @@ nav#pagination {
     align-items: center;
     max-width: $listItemWidth;
 
+    @media only screen and (max-width: $mobileBreakpoint) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
     img {
       width: 100%;
       border-radius: 2px;
@@ -222,6 +234,11 @@ nav#pagination {
 
 // product
 #product-page {
+  #description-modal {
+    max-width: 20em;
+    margin: auto;
+  }
+
   #AddToCartForm {
     #productSelect {
       max-width: 65px;
@@ -269,6 +286,10 @@ nav#pagination {
     display: none;
   }
 
+  #product-details {
+    text-align: center;
+  }
+
   @media only screen and (min-width: $tabletBreakpoint) {
     .tns-outer {
       display: none;
@@ -280,7 +301,6 @@ nav#pagination {
       transform: translateY(-50%) translateZ(0);
       right: 0;
       width: 33%;
-      text-align: center;
     }
 
     #product-images {
