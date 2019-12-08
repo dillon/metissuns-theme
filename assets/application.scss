@@ -255,13 +255,22 @@ nav#pagination {
       padding-top: 5px;
     }
 
-    img {
+    .img-wrapper {
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      @media only screen and (max-width: $smallerTextBreakpoint) {
-        max-height: 75px;
-        width: auto;
+      img {
+        max-width: 100%;
+        max-height: 200px;
+
+        @media only screen and (max-width: $smallerTextBreakpoint) {
+          max-height: 75px;
+          width: auto;
+        }
       }
+
     }
 
 
@@ -531,7 +540,7 @@ nav#pagination {
 // contact
 #contact {
   font-size: 1.1em;
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
   padding: 10px;
 

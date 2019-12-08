@@ -7,7 +7,9 @@
             <tr>
               <td>
                 <a class="no-hover" href="{{ item.url | within: collections.all }}">
-                  <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+                  <div class="img-wrapper">
+                    <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+                  </div>
                 </a>
               </td>
               <td class="details">
