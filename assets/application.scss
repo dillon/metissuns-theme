@@ -203,9 +203,11 @@ nav#pagination {
   margin: auto;
 
   #remove {
-    position: absolute;
-    padding-top: 2px;
-    padding-left: 3px;
+    padding-left: 1px;
+
+    svg {
+      margin-bottom: -2px;
+    }
 
     &:hover,
     &:active,
@@ -349,7 +351,6 @@ nav#pagination {
 
     img {
       width: 100%;
-      border-radius: 2px;
       max-width: $listItemWidth;
     }
   }
