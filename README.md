@@ -1,6 +1,6 @@
 # metissuns-theme
 
-Created with [https://shopify.github.io/themekit/](Shopify Theme Kit)
+Created with (Shopify Theme Kit)[https://shopify.github.io/themekit/]
 
 ## Commands
 
