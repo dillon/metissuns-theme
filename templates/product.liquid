@@ -34,6 +34,7 @@
       navPosition: "bottom",
       center: true,
       mouseDrag: true,
+      preventScrollOnTouch: true,
       nav: true
       })
   </script>
@@ -68,9 +69,9 @@
           {% endif %}
         {% endfor %}
       </select>
-        {% comment %} <span id="caret-container">
+        <span id="caret-container">
           <svg id="down-caret" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>        
-        </span> {% endcomment %}
+        </span>
         <div id="ProductPrice">
         {% if product.selected_or_first_available_variant.available %}
           {{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}
@@ -79,15 +80,29 @@
         {% endif %}
       </div>
       <input style="display:none;" type="number" id="Quantity" name="quantity" value="1" min="1">
-      <button class="unstyled" type="submit" name="add" id="AddToCart">
+      <button disabled class="unstyled" type="submit" name="add" id="AddToCart">
       Cart +
       </button>
     </form>
   </div>
+  <div style="visibility: hidden; position: absolute;" id="text-measurement-tool"></div>
 </div>
 <script>
-  function selectChangeHandler(event) {
-    const price = document.getElementById('productSelect').selectedOptions[0].dataset.price
-    document.getElementById('ProductPrice').innerHTML = price;
+  function selectChangeHandler() {
+    const productSelect = document.getElementById('productSelect');
+    const length = productSelect.selectedOptions[0].innerText.trim().length;
+    const price = productSelect.selectedOptions[0].dataset.price;
+    if (price) {
+      document.getElementById('ProductPrice').innerHTML = price;
+      document.getElementById('AddToCart').disabled = false;
+    } else {
+      document.getElementById('AddToCart').disabled = true;
+    }
+    const tool = document.getElementById("text-measurement-tool");
+    tool.innerHTML = productSelect.selectedOptions[0].innerText.trim();
+    const width = ((tool.clientWidth || 40) + 1);
+    const amount = (width + 15) + 'px;';
+    productSelect.setAttribute('style', 'width: ' + amount);
   }
+  selectChangeHandler();
 </script>

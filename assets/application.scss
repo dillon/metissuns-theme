@@ -94,9 +94,9 @@ button.link:hover {
 
 
 @media only screen and (max-width: $smallerTextBreakpoint) {
-  body {
-    font-size: 12px
-  }
+  // body {
+  //   font-size: 12px
+  // }
 }
 
 main {
@@ -190,11 +190,6 @@ nav#nav {
   }
 }
 
-@media only screen and (max-width: $smallerTextBreakpoint) {
-  nav#nav {
-    font-size: 1.4em;
-  }
-}
 
 
 nav#pagination {
@@ -207,11 +202,38 @@ nav#pagination {
   max-width: 800px;
   margin: auto;
 
+  #remove {
+    position: absolute;
+    padding-top: 2px;
+    padding-left: 3px;
+
+    &:hover,
+    &:active,
+    &:visited,
+    &:focus {
+      background-color: inherit;
+      color: inherit;
+    }
+  }
+
+
   table {
+    border-collapse: collapse;
+    table-layout: fixed;
     margin: auto;
+
+    @media only screen and (max-width: $smallerTextBreakpoint) {
+      .details {
+        padding: 10px 0;
+      }
+    }
 
     #cart-subtotal .details {
       padding-top: 40px;
+
+      @media only screen and (max-width: $smallerTextBreakpoint) {
+        padding-top: 20px;
+      }
     }
 
     #cart-buttons .details {
@@ -219,12 +241,11 @@ nav#pagination {
     }
 
     img {
-      max-width: 200px;
-      max-height: 200px;
+      width: 100%;
 
       @media only screen and (max-width: $smallerTextBreakpoint) {
-        max-width: 150px;
-        max-height: 150px;
+        max-height: 75px;
+        width: auto;
       }
     }
 
@@ -232,7 +253,7 @@ nav#pagination {
     .details>div {
       margin-left: 20px;
 
-      @media only screen and (max-width: $smallerTextBreakpoint) {
+      @media only screen and (min-width: $smallerTextBreakpoint) {
         margin-left: 10px;
       }
     }
@@ -251,17 +272,25 @@ nav#pagination {
   td {
     input {
       text-align: right;
-      max-width: 30px;
+      max-width: 50px;
       background: inherit;
       background-color: inherit;
       border: none;
       font-size: inherit;
       font-family: inherit;
     }
+
+    >div {
+      margin: 0 2px;
+    }
   }
 
   .checkout {
     padding-top: 30px;
+
+    @media only screen and (max-width: $smallerTextBreakpoint) {
+      padding-top: 12px;
+    }
   }
 
   .mobile-show {
@@ -335,13 +364,14 @@ nav#pagination {
 
   #AddToCartForm {
     #productSelect {
-      max-width: 65px;
-      // padding-left: 9px;
+      -webkit-appearance: unset;
+      appearance: unset;
     }
 
-    svg.down-caret {
+    svg#down-caret {
       position: absolute;
-      transform: translate(-16px, 6px);
+      z-index: -1;
+      transform: translate3d(-16px, 5px, 0);
     }
   }
 

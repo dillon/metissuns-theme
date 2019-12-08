@@ -5,23 +5,28 @@
         <tbody>
           {% for item in cart.items %}
             <tr>
-              <td class="mobile-hide">
+              <td>
                 <a class="no-hover" href="{{ item.url | within: collections.all }}">
                   <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
                 </a>
               </td>
               <td class="details">
-                <a class="no-hover mobile-show" href="{{ item.url | within: collections.all }}">
-                  <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
-                </a>
-                <div>{{ item.product.title }}</div>
+                <div class="sans-serif"><strong>{{ item.product.title }}</strong></div>
+                <div class="row">
+                  <div>Quantity</div>
+                  <div>
+                    <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
+                    <a id="remove" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>                    
+                    </a>
+                  </div>
+                </div>
                 <div class="row">
                   <div>Size</div>
                   <div>{{ item.variant.title }}</div>
-                </div>
-                <div class="row">
-                  <div>Quantity</div>
-                  <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
                 </div>
                 <div class="row">
                   <div>Subtotal</div>
@@ -36,7 +41,7 @@
             </tr>
           {% endfor %}
           <tr id="cart-subtotal">
-            <td class="mobile-hide"></td>
+            <td ></td>
             <td class="details">
               <div class="row">
                 <div>Cart Subtotal</div>
@@ -44,7 +49,7 @@
               </div>
             </tr>
             <tr id="cart-buttons">
-              <td class="mobile-hide"></td>
+              <td></td>
               <td class="details">
                 <div class="row">
                   <div></div>
