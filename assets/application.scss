@@ -43,6 +43,26 @@ body:not(.user-is-tabbing) {
   }
 }
 
+
+button.link {
+  font-family: serif;
+  font-size: inherit;
+  background: inherit;
+  background-color: inherit;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  color: blue;
+  font-family: sans-serif;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+button.link:hover {
+  background-color: blue;
+  color: white;
+}
+
 .tns-item img {
   width: 100%;
 }
@@ -124,10 +144,6 @@ a:visited {
   color: blue;
 }
 
-/*a:hover {
-	color: red;	
-}*/
-
 a:hover {
   background-color: blue;
   color: white;
@@ -184,6 +200,84 @@ nav#nav {
 nav#pagination {
   display: flex;
   justify-content: center;
+}
+
+// cart
+#cart {
+  max-width: 800px;
+  margin: auto;
+
+  table {
+    margin: auto;
+
+    #cart-subtotal .details {
+      padding-top: 40px;
+    }
+
+    #cart-buttons .details {
+      padding-top: 5px;
+    }
+
+    img {
+      max-width: 200px;
+      max-height: 200px;
+
+      @media only screen and (max-width: $smallerTextBreakpoint) {
+        max-width: 150px;
+        max-height: 150px;
+      }
+    }
+
+
+    .details>div {
+      margin-left: 20px;
+
+      @media only screen and (max-width: $smallerTextBreakpoint) {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  td {
+    input {
+      text-align: right;
+      max-width: 30px;
+      background: inherit;
+      background-color: inherit;
+      border: none;
+      font-size: inherit;
+      font-family: inherit;
+    }
+  }
+
+  .checkout {
+    padding-top: 30px;
+  }
+
+  .mobile-show {
+    display: none;
+  }
+
+  @media only screen and (max-width: $smallerTextBreakpoint) {
+    .mobile-hide {
+      display: none;
+    }
+
+    .mobile-show {
+      display: inherit;
+    }
+  }
+
 }
 
 // home
@@ -299,8 +393,14 @@ nav#pagination {
       position: fixed;
       top: 50%;
       transform: translateY(-50%) translateZ(0);
-      right: 0;
+      right: 10px;
       width: 33%;
+
+      >div,
+      >form {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
     }
 
     #product-images {
