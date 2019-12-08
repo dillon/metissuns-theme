@@ -260,13 +260,14 @@ nav#pagination {
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 20px 0;
 
       img {
         max-width: 100%;
         max-height: 200px;
 
         @media only screen and (max-width: $smallerTextBreakpoint) {
-          max-height: 75px;
+          max-height: 100px;
           width: auto;
         }
       }
@@ -471,6 +472,7 @@ nav#pagination {
       .img-wrapper {
         height: 75vh;
         // margin-bottom: 40px;
+        padding-bottom: 15px;
       }
 
       img {
@@ -526,6 +528,7 @@ nav#pagination {
 
     .img-wrapper {
       height: 100vh;
+      padding-bottom: 15px;
     }
 
     img {
