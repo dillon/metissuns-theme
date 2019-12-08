@@ -1,14 +1,26 @@
-<h1>{{ page.title }}</h1>
-{% form 'contact' %}
-  {% if form.posted_successfully? %} Thank you for your contact {% endif %}
-  {{ form.errors | default_errors }}
-  <label for="ContactFormName">name</label>
-  <input type="text" id="ContactFormName" name="contact[name]">
-  <label for="ContactFormEmail">email</label>
-  <input type="email" id="ContactFormEmail" name="contact[email]">
-  <label for="ContactFormPhone">phone</label>
-  <input type="tel" id="ContactFormPhone" name="contact[phone]">
-  <label for="ContactFormMessage">message</label>
-  <textarea rows="10" id="ContactFormMessage" name="contact[body]"></textarea>
-  <input type="submit" value="send">
-{% endform %}
+<div id="contact">
+  <div class="row-collapse">
+    <div class="larger-text">
+      <p>
+        <span class="h3">
+          <a 
+            href="http://metissuns.com"
+            target="_blank" 
+            rel="noopener noreferrer" 
+          >Metis Suns</a>
+          </span>&nbsp;is a production company dedicated to worlding and worlding literacy
+      </p>
+      <br/>
+      <p>
+        Metis Suns produces stories, simulations, and artificial life.
+      </p>
+      <br/>
+      <p>
+        All enquiries:<br/>
+        office@metissuns.com
+      </p>
+      <br/>
+    </div>
+    <div>{{ page.content }}</div>
+  </div>
+</div>

@@ -23,7 +23,9 @@
     <div class="slider">
       {% for image in product.images %}
         <div>
-          <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}">
+          <div>
+            <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}">
+          </div>
         </div>
       {% endfor %}
   </div>
@@ -34,8 +36,10 @@
       navPosition: "bottom",
       center: true,
       mouseDrag: true,
+      swipeAngle: false,
       preventScrollOnTouch: true,
-      nav: true
+      nav: true,
+      loop: false
       })
   </script>
   <div onclick="openModal()" id="product-images">

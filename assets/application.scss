@@ -63,8 +63,15 @@ button.link:hover {
   color: white;
 }
 
+.tns-item div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+}
+
 .tns-item img {
-  width: 100%;
+  max-width: 100%;
 }
 
 .tns-controls [disabled] {
@@ -126,16 +133,19 @@ img {
   display: inline-block;
 }
 
-h2 {
+h3,
+.h3 {
   /*margin: 1.5em 10px;
   padding: 0.5em 10px;
   */
-  font-size: 12pt;
-  font-weight: normal;
-
+  font-size: 1.17em;
+  font-weight: bold;
+  font-family: sans-serif;
 }
 
 h3 {
+  font-size: 1.1em;
+  font-weight: bold;
   font-family: sans-serif;
   margin-bottom: 0.2em;
 }
@@ -177,8 +187,11 @@ nav#nav {
   z-index: 100;
   display: flex;
   justify-content: center;
-  font-size: 1.1em;
   font-weight: bold;
+
+  @media only screen and (min-width: $smallerTextBreakpoint) {
+    font-size: 1.1em;
+  }
 
   >div {
     padding-left: 20px;
@@ -512,5 +525,28 @@ nav#pagination {
       max-height: 100vh;
       max-width: 100%;
     }
+  }
+}
+
+// contact
+#contact {
+  font-size: 1.1em;
+  max-width: 800px;
+  margin: auto;
+  padding: 10px;
+
+  @media only screen and (min-width: $tabletBreakpoint) {
+    .row-collapse {
+      display: flex;
+
+      >div {
+        padding: 20px;
+        flex: 1;
+      }
+    }
+  }
+
+  .larger-text {
+    font-size: 1.2em;
   }
 }
