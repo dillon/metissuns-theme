@@ -87,6 +87,11 @@ button.link:hover {
   color: white;
 }
 
+.slider.tns-slider {
+  display: flex;
+  align-items: center;
+}
+
 .tns-item div {
   display: flex;
   align-items: center;
@@ -96,6 +101,7 @@ button.link:hover {
 
 .tns-item img {
   max-width: 100%;
+  max-height: 120vw;
 }
 
 .tns-controls [disabled] {
@@ -566,7 +572,7 @@ nav#pagination {
 
 // contact
 #contact {
-  font-size: 1.1em;
+  font-size: 1.2em;
   max-width: 1000px;
   margin: auto;
   padding: 10px;
@@ -580,10 +586,6 @@ nav#pagination {
         flex: 1;
       }
     }
-  }
-
-  .larger-text {
-    font-size: 1.2em;
   }
 }
 
@@ -669,7 +671,18 @@ nav#pagination {
 }
 
 @media only screen and (max-width: 1199px) {
-  #floatin-email-signup-container {
+
+  #floating-email-signup-container input[type="submit"],
+  .shopify-challenge__button,
+  #floating-email-signup-container form input[type="email"] {
+    font-size: .8em;
+  }
+
+  #floating-email-signup-container form input[type="email"] {
+    width: 150px;
+  }
+
+  #floating-email-signup-container {
     form {
       display: flex;
       flex-direction: column;
@@ -685,8 +698,9 @@ nav#pagination {
   }
 
   #floating-icon>img {
-    width: 45px;
-    height: 45px;
+    padding-top: 3px;
+    width: 52px;
+    height: 52px;
   }
 }
 

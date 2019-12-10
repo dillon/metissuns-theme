@@ -24,7 +24,7 @@
       {% for image in product.images %}
         <div>
           <div>
-            <img src="{{ image.src | img_url: '700x700' }}" alt="{{ image.alt | escape }}">
+            <img src="{{ image.src | img_url: '900x900' }}" alt="{{ image.alt | escape }}">
           </div>
         </div>
       {% endfor %}
@@ -46,7 +46,7 @@
     <div id="images">
       {% for image in product.images %}
         <div class="img-wrapper">
-          <img src="{{ image.src | img_url: '700x700' }}" alt="{{ image.alt | escape }}">
+          <img src="{{ image.src | img_url: '1400x1400' }}" alt="{{ image.alt | escape }}">
         </div>
       {% endfor %}
     </div>
