@@ -11,6 +11,8 @@ $tabletBreakpoint: 900px;
 }
 
 .error {
+  min-height: 30px;
+  padding-top: 10px;
   color: red;
   font-family: sans-serif;
 }
