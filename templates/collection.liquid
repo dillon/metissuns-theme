@@ -18,16 +18,16 @@
       {% unless product.available %}
         <div class="product">
           <a class="no-hover" href="{{ product.url | within: collection }}">
-            <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+            <img src="{{ product.featured_image.src | img_url: '700x700' }}" alt="{{ product.featured_image.alt | escape }}">
           </a>
           <div>
             <a class="sans-serif" href="{{ product.url | within: collection }}">
               <strong>{{ product.title }}</strong>
             </a>
           </div>
-          <div>
+          <div class="sold-out">
               {% if product.available %}{{ product.price | money_without_trailing_zeros }}
-              {% else %}sold out
+              {% else %}SOLD OUT
               {% endif %}
           </div>
         </div>
@@ -35,16 +35,16 @@
     {% else %}
       <div class="product">
         <a class="no-hover" href="{{ product.url | within: collection }}">
-          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          <img src="{{ product.featured_image.src | img_url: '700x700' }}" alt="{{ product.featured_image.alt | escape }}">
         </a>
         <div>
           <a class="sans-serif" href="{{ product.url | within: collection }}">
             <strong>{{ product.title }}</strong>
           </a>
         </div>
-        <div>
+        <div class="sold-out">
             {% if product.available %}{{ product.price | money_without_trailing_zeros }}
-            {% else %}sold out
+            {% else %}SOLD OUT
             {% endif %}
         </div>
       </div>

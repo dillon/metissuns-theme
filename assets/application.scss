@@ -1,9 +1,25 @@
 // sitewide variables
 $backgroundColor: #f1f1f1;
+$grey: rgb(213, 213, 213);
 $listItemWidth: 350px;
 $smallerTextBreakpoint: 500px;
 $mobileBreakpoint: 700px;
 $tabletBreakpoint: 900px;
+
+.color-blue {
+  color: #0000FF
+}
+
+.sans-serif-important {
+  font-family: sans-serif !important;
+  font-size: .9em !important;
+}
+
+.sold-out {
+  font-family: sans-serif !important;
+  font-size: .9em !important;
+  color: red;
+}
 
 // put your styles here
 
@@ -38,6 +54,7 @@ body:not(.user-is-tabbing) {
 
   // nicer styling for non-accessibility users
   select,
+  input,
   button {
     outline: none;
   }
@@ -373,8 +390,8 @@ nav#pagination {
     }
 
     img {
-      width: 100%;
       max-width: $listItemWidth;
+      max-height: $listItemWidth
     }
   }
 }
@@ -561,4 +578,130 @@ nav#pagination {
   .larger-text {
     font-size: 1.2em;
   }
+}
+
+
+
+#floating-icon>img {
+  width: 60px;
+  height: 60px;
+  margin: 20px;
+}
+
+#floating-email-signup-container input[type="submit"],
+.shopify-challenge__button {
+  cursor: pointer;
+  -webkit-appearance: none;
+  border-radius: 0;
+  padding: 5px 6px;
+  background: $grey;
+  background-color: $grey;
+  border: none;
+  border-radius: none;
+  box-shadow: none;
+  font-size: .65em;
+  font-family: sans-serif;
+  -webkit-appearance: none;
+  border-radius: 0;
+
+}
+
+#floating-email-signup-container input[type="submit"]:active,
+.shopify-challenge__button:active {
+  background: rgb(200, 200, 200);
+}
+
+#floating-email-signup-container {
+  .submitted {
+
+    transform: translate3d(1000px, 0, 0);
+
+    input {
+      width: 0px;
+      padding: 0;
+      margin: -2px;
+    }
+  }
+
+  form {
+    background: $grey;
+    padding-bottom: 1px;
+    margin: 20px;
+    transition:
+      width 500ms,
+      padding 500ms,
+      margin 500ms,
+      transform 2s ease-in-out 500ms;
+
+
+    input[type="email"] {
+      padding: 5px 6px;
+      width: 100px;
+      max-width: 100%;
+      border: none;
+      background: inherit;
+      font-size: .65em;
+      font-family: sans-serif;
+      transition:
+        width 500ms,
+        padding 500ms,
+        margin 500ms,
+        transform 500ms ease-in-out 500ms;
+    }
+
+    input[type="email"]:focus {
+      width: 180px;
+      max-width: 100%;
+    }
+  }
+}
+
+#mobile-hr {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 1199px) {
+  #floatin-email-signup-container {
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  #footer-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #floating-icon>img {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #floating-email-signup-container {
+    position: fixed;
+
+    form {
+      position: fixed;
+      bottom: 0px;
+      right: 0px;
+    }
+  }
+
+  #mobile-hr {
+    display: none;
+  }
+
+  #floating-icon>img {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+  }
+
 }

@@ -50,6 +50,22 @@
   <main role="main">
     {{ content_for_layout }}
   </main>
+  
+  <hr id="mobile-hr"/>
+  
+  <footer id="footer-row">
+    <a class="no-hover" href="http://metissuns.com" target="_blank" rel="noopener noreferrer" id="floating-icon">
+      <img alt='metis suns logo' src="{{ 'simulations_icon_invert.png' | asset_url }}">
+    </a>
+    <div id="floating-email-signup-container">
+      {% form 'customer' %}
+        <input id="contact_tags" name="contact[tags]" type="hidden" value="prospect,newsletter" />
+        <input id="contact_email" name="contact[email]" type="email" autocomplete="off" alt="email for newsletter signup" required placeholder="Email Address &rarr;">	
+        <input type="submit">
+      {% endform %}
+    </div>
+  </footer>
+
   <script>
     // ACCESSIBILITY
     function handleFirstTab(e) {

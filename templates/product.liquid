@@ -5,7 +5,7 @@
 <div onclick="closeModal(this)" id="product-modal">
   {% for image in product.images %}
     <div class="img-wrapper">
-      <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}">
+      <img src="{{ image.src | img_url: 'master' }}" alt="{{ image.alt | escape }}">
     </div>
   {% endfor %}
 </div>
@@ -24,7 +24,7 @@
       {% for image in product.images %}
         <div>
           <div>
-            <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}">
+            <img src="{{ image.src | img_url: '700x700' }}" alt="{{ image.alt | escape }}">
           </div>
         </div>
       {% endfor %}
@@ -46,7 +46,7 @@
     <div id="images">
       {% for image in product.images %}
         <div class="img-wrapper">
-          <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}">
+          <img src="{{ image.src | img_url: '700x700' }}" alt="{{ image.alt | escape }}">
         </div>
       {% endfor %}
     </div>
@@ -84,8 +84,8 @@
         {% endif %}
       </div>
       <input style="display:none;" type="number" id="Quantity" name="quantity" value="1" min="1">
-      <button disabled class="unstyled" type="submit" name="add" id="AddToCart">
-      Cart +
+      <button disabled class="color-blue sans-serif-important unstyled" type="submit" name="add" id="AddToCart">
+      PURCHASE
       </button>
     </form>
   </div>
