@@ -85,13 +85,23 @@
       </div>
       <input style="display:none;" type="number" id="Quantity" name="quantity" value="1" min="1">
       <button disabled class="color-blue sans-serif-important unstyled" type="submit" name="add" id="AddToCart">
-      PURCHASE
+      <div id="disabled-AddToCart">PURCHASE</div>
       </button>
     </form>
+    <div id="error-1" class="error">
+    </div>
   </div>
   <div style="visibility: hidden; position: absolute;" id="text-measurement-tool"></div>
 </div>
 <script>
+  document.getElementById('disabled-AddToCart').addEventListener('click', function() {
+    const value = document.getElementById('productSelect').value
+    if ( !value || value === "") {
+      document.getElementById('error-1').innerText = "PLEASE SELECT A SIZE"
+    } else {
+      document.getElementById('error-1').innerText = ""
+    }
+  })
   function selectChangeHandler() {
     const productSelect = document.getElementById('productSelect');
     const length = productSelect.selectedOptions[0].innerText.trim().length;
@@ -99,6 +109,7 @@
     if (price) {
       document.getElementById('ProductPrice').innerHTML = price;
       document.getElementById('AddToCart').disabled = false;
+      document.getElementById('error-1').innerText = ""
     } else {
       document.getElementById('AddToCart').disabled = true;
     }
