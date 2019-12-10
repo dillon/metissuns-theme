@@ -42,6 +42,10 @@
       loop: false
       })
   </script>
+  <div id="Cart-Container">
+    <div id="Cart">
+    </div>
+  </div>
   <div onclick="openModal()" id="product-images">
     <div id="images">
       {% for image in product.images %}
@@ -102,6 +106,27 @@
       document.getElementById('error-1').innerText = ""
     }
   })
+
+  function getCart() {
+    $.get('/cart.js', function(data) {
+        console.log(data)
+    })
+  }
+
+  $(document).on('submit', '#AddToCartForm', function(e) {
+      $.ajax({
+          url: $(this).attr('action'),
+          type: $(this).attr('method'),
+          data: $(this).serialize(),
+          success: function(html) {
+            // document.getElementById('Cart').innerHTML = html; 
+            getCart()
+          }
+      });
+      e.preventDefault();
+      return false
+  });
+
   function selectChangeHandler() {
     const productSelect = document.getElementById('productSelect');
     const length = productSelect.selectedOptions[0].innerText.trim().length;
