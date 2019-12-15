@@ -107,9 +107,11 @@
     }
   })
 
+  /*
   function getCart() {
-    $.get('/cart.js', function(data) {
-        console.log(data)
+    $.get('/cart.js', function(rawData) {
+        const data = JSON.parse(rawData);
+        console.log(data);
     })
   }
 
@@ -126,6 +128,7 @@
       e.preventDefault();
       return false
   });
+  */
 
   function selectChangeHandler() {
     const productSelect = document.getElementById('productSelect');
