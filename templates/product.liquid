@@ -89,7 +89,11 @@
       </div>
       <input style="display:none;" type="number" id="Quantity" name="quantity" value="1" min="1">
       <button disabled class="color-blue sans-serif-important unstyled" type="submit" name="add" id="AddToCart">
-      <div id="disabled-AddToCart">PURCHASE</div>
+      <div id="disabled-AddToCart">
+        {% if product.available %}
+          PURCHASE
+        {% endif %}
+      </div>
       </button>
     </form>
     <div id="error-1" class="error">
