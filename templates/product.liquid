@@ -63,23 +63,29 @@
       <div type="submit" id="description-modal">{{ product.description }}</div>
     {% endif %}
     <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-      <select onchange="selectChangeHandler()" name="id" id="productSelect">
-        <option value="" disabled selected>Size</option>
+      {% if product.has_only_default_variant %}
         {% for variant in product.variants %}
-          {% if variant.available %}
-            <option data-price="{{ variant.price | money_without_trailing_zeros }}" value="{{ variant.id }}">
-              {{ variant.title }}
-            </option>
-          {% else %}
-            <option disabled="disabled">
-              {{ variant.title }} - Sold Out
-            </option>
-          {% endif %}
+          <input name="id" id="productSelect" value="{{ variant.id }}" type="hidden">
         {% endfor %}
-      </select>
+      {% else %}
+        <select onchange="selectChangeHandler()" name="id" id="productSelect">
+          <option value="" disabled selected>Size</option>
+          {% for variant in product.variants %}
+            {% if variant.available %}
+              <option data-price="{{ variant.price | money_without_trailing_zeros }}" value="{{ variant.id }}">
+                {{ variant.title }}
+              </option>
+            {% else %}
+              <option disabled="disabled">
+                {{ variant.title }} - Sold Out
+              </option>
+            {% endif %}
+          {% endfor %}
+        </select>
         <span id="caret-container">
           <svg id="down-caret" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>        
         </span>
+      {% endif %}
         <div id="ProductPrice">
         {% if product.selected_or_first_available_variant.available %}
           {{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}
@@ -88,7 +94,11 @@
         {% endif %}
       </div>
       <input style="display:none;" type="number" id="Quantity" name="quantity" value="1" min="1">
-      <button disabled class="color-blue sans-serif-important unstyled" type="submit" name="add" id="AddToCart">
+      {% if product.has_only_default_variant %}
+        <button class="color-blue sans-serif-important unstyled" type="submit" name="add" id="AddToCart">
+      {% else %}
+        <button disabled class="color-blue sans-serif-important unstyled" type="submit" name="add" id="AddToCart">
+      {% endif %}
       <div id="disabled-AddToCart">
         {% if product.available %}
           PURCHASE
@@ -102,8 +112,10 @@
   <div style="visibility: hidden; position: absolute;" id="text-measurement-tool"></div>
 </div>
 <script>
+  
   document.getElementById('disabled-AddToCart').addEventListener('click', function() {
     const value = document.getElementById('productSelect').value
+    console.log(value)
     if ( !value || value === "") {
       document.getElementById('error-1').innerText = "PLEASE SELECT A SIZE"
     } else {
@@ -136,6 +148,7 @@
 
   function selectChangeHandler() {
     const productSelect = document.getElementById('productSelect');
+    if (!(productSelect && productSelect.selectedOptions)) return;
     const length = productSelect.selectedOptions[0].innerText.trim().length;
     const price = productSelect.selectedOptions[0].dataset.price;
     if (price) {

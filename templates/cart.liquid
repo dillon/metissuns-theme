@@ -28,10 +28,12 @@
                     <input type="number" name="updates[]" placeholder="0" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
                   </div>
                 </div>
-                <div class="row">
-                  <div>Size</div>
-                  <div>{{ item.variant.title }}</div>
-                </div>
+                {% unless item.variant.title == 'Default Title' %}
+                  <div class="row">
+                    <div>Size</div>
+                      <div>{{ item.variant.title }}</div>
+                  </div>
+                {% endunless %}
                 <div class="row">
                   <div>Subtotal</div>
                   <div>

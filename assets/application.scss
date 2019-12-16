@@ -544,6 +544,7 @@ nav#pagination {
 #product-modal {
   display: none;
   visibility: hidden;
+  z-index: 5;
 
   @media only screen and (min-width: $tabletBreakpoint) {
     &.open {
@@ -603,6 +604,10 @@ nav#pagination {
 }
 
 
+
+#floating-icon, #floating-email-signup-container {
+  z-index: 2;
+}
 
 #floating-icon>img {
   width: 60px;
